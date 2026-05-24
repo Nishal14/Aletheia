@@ -1,0 +1,54 @@
+# ── Python ──────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+.venv/
+venv/
+env/
+.env
+*.env.local
+
+# ── Runtime artifacts ────────────────────────────────────────────────────────
+backend/aletheia.db
+backend/aletheia.db-shm
+backend/aletheia.db-wal
+*.db
+*.sqlite
+*.sqlite3
+
+# ── Node.js ──────────────────────────────────────────────────────────────────
+node_modules/
+frontend/.next/
+frontend/out/
+frontend/.vercel/
+frontend/tsconfig.tsbuildinfo
+*.tsbuildinfo
+
+# ── OS ───────────────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ── IDEs ─────────────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.code-workspace
+.cursor/
+
+# ── Logs ─────────────────────────────────────────────────────────────────────
+*.log
+/tmp/
+
+# ── Docker volumes (don't commit Qdrant data) ────────────────────────────────
+qdrant_data/
+
+# ── Secrets ──────────────────────────────────────────────────────────────────
+*.pem
+*.key
+secrets.json

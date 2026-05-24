@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 224 20% 5%;
+    --foreground: 220 15% 92%;
+    --card: 224 18% 8%;
+    --card-foreground: 220 15% 92%;
+    --border: 224 14% 14%;
+    --input: 224 14% 12%;
+    --ring: 245 60% 60%;
+    --primary: 245 60% 60%;
+    --primary-foreground: 0 0% 100%;
+    --muted: 224 14% 12%;
+    --muted-foreground: 220 10% 52%;
+    --accent: 245 50% 50%;
+    --accent-foreground: 0 0% 100%;
+    --secondary: 224 15% 11%;
+    --secondary-foreground: 220 10% 75%;
+  }
+
+  * { @apply border-border; }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::-webkit-scrollbar { width: 4px; height: 4px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { @apply bg-border/60 rounded-full; }
+  ::-webkit-scrollbar-thumb:hover { @apply bg-muted-foreground/25; }
+}
+
+@layer components {
+  /* ── Prose ── */
+  .prose-aletheia { @apply text-foreground/90 leading-relaxed; }
+  .prose-aletheia h1,.prose-aletheia h2,.prose-aletheia h3 {
+    @apply text-foreground font-semibold mt-5 mb-2 leading-tight;
+  }
+  .prose-aletheia h1 { @apply text-lg; }
+  .prose-aletheia h2 { @apply text-base; }
+  .prose-aletheia h3 { @apply text-sm font-semibold; }
+  .prose-aletheia p { @apply mb-3 last:mb-0; }
+  .prose-aletheia code {
+    @apply bg-primary/10 border border-primary/20 px-1.5 py-0.5 rounded-md text-[0.82em] font-mono text-primary/90;
+  }
+  .prose-aletheia pre { @apply bg-[#0d0e14] rounded-xl p-4 overflow-x-auto my-3 border border-border/50; }
+  .prose-aletheia pre code { @apply bg-transparent border-0 p-0 text-foreground/80; }
+  .prose-aletheia ul,.prose-aletheia ol { @apply pl-5 mb-3 space-y-1.5; }
+  .prose-aletheia ul { @apply list-disc; }
+  .prose-aletheia ol { @apply list-decimal; }
+  .prose-aletheia li { @apply leading-relaxed; }
+  .prose-aletheia blockquote {
+    @apply border-l-2 border-primary/40 pl-4 text-muted-foreground italic my-3;
+  }
+  .prose-aletheia a { @apply text-primary/90 underline underline-offset-2 hover:text-primary transition-colors; }
+  .prose-aletheia table { @apply w-full border-collapse text-sm my-3; }
+  .prose-aletheia th { @apply border border-border px-3 py-2 text-left bg-muted/60 font-semibold text-xs uppercase tracking-wider; }
+  .prose-aletheia td { @apply border border-border px-3 py-2 text-sm; }
+  .prose-aletheia strong { @apply font-semibold text-foreground; }
+  .prose-aletheia em { @apply italic text-foreground/80; }
+  .prose-aletheia hr { @apply border-border/50 my-4; }
+
+  /* ── Cards ── */
+  .glass-card {
+    @apply bg-card/50 backdrop-blur-md border border-border/50 rounded-2xl;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.03);
+  }
+  .metric-card {
+    @apply bg-muted/30 border border-border/30 rounded-xl p-3 text-center;
+  }
+  .panel-section {
+    @apply bg-muted/20 border border-border/30 rounded-xl p-3;
+  }
+}
+
+/* ── Cursor blink ── */
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+.cursor-blink { animation: blink 1s step-end infinite; }
+
+/* ── Shimmer ── */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.shimmer {
+  background: linear-gradient(90deg, transparent 0%, rgba(99,102,241,0.07) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmer 2.2s linear infinite;
+}
+
+/* ── Gradient text ── */
+.gradient-text {
+  background: linear-gradient(135deg, hsl(var(--primary)), #818cf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Glow effects ── */
+.glow-primary {
+  box-shadow: 0 0 20px rgba(99,102,241,0.15), 0 0 60px rgba(99,102,241,0.06);
+}
+.glow-sm { box-shadow: 0 0 12px rgba(99,102,241,0.12); }
