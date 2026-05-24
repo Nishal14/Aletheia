@@ -82,7 +82,7 @@ Install these before cloning:
 **Mac / Linux**
 ```bash
 git clone https://github.com/Nishal14/Aletheia
-cd aletheia
+cd Aletheia
 chmod +x start.sh
 ./start.sh
 ```
@@ -90,7 +90,7 @@ chmod +x start.sh
 **Windows (PowerShell)**
 ```powershell
 git clone https://github.com/Nishal14/Aletheia
-cd aletheia
+cd Aletheia
 .\start.ps1
 ```
 
