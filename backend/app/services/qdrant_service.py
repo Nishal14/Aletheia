@@ -18,9 +18,14 @@ class QdrantService:
 
     async def connect(self):
         try:
+            # Support Qdrant Cloud via QDRANT_API_KEY env var
+            import os
+            qdrant_api_key = os.environ.get("QDRANT_API_KEY")
             self.client = AsyncQdrantClient(
                 host=settings.QDRANT_HOST,
                 port=settings.QDRANT_PORT,
+                api_key=qdrant_api_key,
+                https=bool(qdrant_api_key),
                 timeout=10.0,
             )
             await self.client.get_collections()

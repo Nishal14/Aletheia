@@ -67,55 +67,62 @@ The pipeline architecture is informed by MBZUAI research:
 
 ### Prerequisites
 
-- [Python 3.11+](https://python.org)
-- [Node.js 18+](https://nodejs.org)
-- [Ollama](https://ollama.ai)
-- [Docker](https://docker.com) (for Qdrant — optional, chat works without it)
+Install these before cloning:
 
-### 1. Install dependencies
+| Tool | Purpose | Install |
+|---|---|---|
+| [Node.js 18+](https://nodejs.org) | Frontend | nodejs.org |
+| [Ollama](https://ollama.ai) | Local LLM inference | ollama.ai |
+| [Docker](https://docker.com) | Qdrant vector DB (optional) | docker.com |
 
+`uv` (Python env manager) is installed automatically by the start script if missing.
+
+### Clone and run
+
+**Mac / Linux**
+```bash
+git clone https://github.com/Nishal14/Aletheia
+cd aletheia
+chmod +x start.sh
+./start.sh
+```
+
+**Windows (PowerShell)**
 ```powershell
+git clone https://github.com/Nishal14/Aletheia
+cd aletheia
+.\start.ps1
+```
+
+That's it. The script handles everything on first run:
+
+- Installs [uv](https://docs.astral.sh/uv/) if not present
+- `uv sync` — creates the Python virtualenv and installs all backend deps
+- `npm install` — installs frontend deps
+- Copies `.env.example` → `.env`
+- Pulls `qwen3:4b` and `nomic-embed-text` via Ollama (one-time, ~3GB)
+- Starts Qdrant via Docker if available
+- Launches backend on **:8000** and frontend on **:3000**
+
+Open **http://localhost:3000**.
+
+> **Subsequent runs** are instant — uv, npm, and model checks are skipped once already done.
+
+### Manual setup
+
+If you prefer running services individually:
+
+```bash
 # Backend
 cd backend
-pip install -r requirements.txt
+uv sync                                          # sets up .venv automatically
+uv run uvicorn app.main:app --port 8000 --reload
 
-# Frontend
-cd ../frontend
+# Frontend (separate terminal)
+cd frontend
 npm install
-```
-
-### 2. Pull models
-
-```bash
-ollama pull qwen3:4b
-ollama pull nomic-embed-text
-```
-
-### 3. Start Qdrant (optional but recommended)
-
-```bash
-docker compose up qdrant -d
-```
-
-### 4. Configure backend
-
-```bash
-cp backend/.env.example backend/.env
-```
-
-### 5. Run
-
-**Backend** (from `backend/`):
-```bash
-python -m uvicorn app.main:app --port 8000
-```
-
-**Frontend** (from `frontend/`):
-```bash
 npm run dev
 ```
-
-Open [http://localhost:3000](http://localhost:3000).
 
 ---
 
