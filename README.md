@@ -94,7 +94,7 @@ cd Aletheia
 .\start.ps1
 ```
 
-That's it. The script handles everything on first run:
+The script handles everything on first run:
 
 - Installs [uv](https://docs.astral.sh/uv/) if not present
 - `uv sync` — creates the Python virtualenv and installs all backend deps
